@@ -1,0 +1,296 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+    position: relative;
+    width: 420px;
+    height: 520px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    width: 420px;
+    height: 520px;
+    perspective: 1200px;
+    /* cần cho lật 3D */
+}
+
+.card {
+    position: absolute;
+    width: 420px;
+    height: 520px;
+    border-radius: 20px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+}
+
+.page1 {
+    background: #fff;
+    z-index: 2;
+}
+
+.page2 {
+    background: #fff0f6;
+    transform: rotateY(180deg);
+    z-index: 1;
+}
+
+/* Khi container có class flipped thì lật cả 2 card */
+.container.flipped .page1 {
+    transform: rotateY(180deg);
+}
+
+.container.flipped .page2 {
+    transform: rotateY(0deg);
+}
+
+.flower {
+    font-size: 70px;
+    animation: bounce 2s infinite alternate;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+h1 {
+    color: #e91e63;
+    margin: 10px 0;
+    font-size: 32px;
+    text-shadow: 0 0 10px #ff80ab, 0 0 20px #ff4081;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #ff80ab, 0 0 10px #ff4081;
+    }
+
+    to {
+        text-shadow: 0 0 20px #ff80ab, 0 0 40px #f50057;
+    }
+}
+
+.message {
+    font-size: 20px;
+    color: #444;
+    display: inline-block;
+    overflow: hidden;
+    border-right: 2px solid #e91e63;
+    white-space: nowrap;
+    margin: 20px auto;
+    animation: typing 5s steps(50, end), blink .7s infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
+}
+
+.rainbow {
+    background: linear-gradient(90deg, #e91e63, #9c27b0, #3f51b5, #009688, #ff9800, #e91e63);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbowMove 5s linear infinite;
+    background-size: 400%;
+}
+
+@keyframes rainbowMove {
+    0% {
+        background-position: 0% 50%
+    }
+
+    100% {
+        background-position: 100% 50%
+    }
+}
+
+/* Trang trí giữa */
+.decor {
+    font-size: 28px;
+    margin: 20px 0;
+    animation: swing 3s infinite ease-in-out;
+}
+
+@keyframes swing {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(5deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* Hoa rơi */
+.petal {
+    position: absolute;
+    top: -50px;
+    font-size: 24px;
+    color: #e91e63;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* footer */
+.footer {
+    margin-top: auto;
+    font-size: 18px;
+    color: #e91e63;
+    opacity: 0;
+    animation: slideUp 2s ease forwards 6s;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+    }
+}
+
+.footer span {
+    animation: twinkle 1.5s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: 0.6;
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* Nút mở */
+.btn {
+    padding: 12px 25px;
+    font-size: 18px;
+    background: linear-gradient(45deg, #ff4081, #e91e63);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 15px 0;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.4s ease;
+    animation: showBtn 1s forwards;
+    animation-delay: 7s;
+    /* xuất hiện sau footer */
+}
+
+.btn:hover {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.6);
+}
+
+@keyframes showBtn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+#page2Text {
+    font-size: 20px;
+    color: #444;
+    text-align: center;
+    white-space: pre-line;
+    padding-right: 2px;
+    color: #d81b60;
+}
+
+
+@keyframes shatter {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+
+    25% {
+        opacity: 0.8;
+        transform: translate(-10px, -10px) rotate(-5deg) scale(1.05);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: translate(10px, 10px) rotate(10deg) scale(0.95);
+    }
+
+    75% {
+        opacity: 0.2;
+        transform: translate(-20px, 20px) rotate(-15deg) scale(1.1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(0, -30px) rotate(20deg) scale(1.2);
+    }
+}
+
+.shatter {
+    display: inline-block;
+    animation: shatter 1s forwards;
+}
+
+#girlImg {
+    height: 100%;
+    width: auto;
+}
